@@ -9,12 +9,12 @@ void addPlayer();
 void fastPrint(char[]);
 
 #define ROWS 10
-#define COLUMNS 10
+#define COLUMNS 50
 
-char grid[COLUMNS][ROWS];
-char buffer[(COLUMNS + 1) * ROWS];
+char grid[COLUMNS + 1][ROWS];
+char buffer[(COLUMNS + 2) * ROWS];
 char backgroundChar = 176, playerChar = 226;
-int playerX = 0, playerY = 0;
+int playerX = 0, playerY;
 int iterations;
 
 int main()
@@ -23,16 +23,18 @@ int main()
     {
         fillBackground(backgroundChar);
         addPlayer();
-        system("cls");
         printToConsole();
+        printf("\033[H");
         printf("%s", buffer);
         movePlayer(getch());
     }
+
     return 0;
 };
 
 void movePlayer(char direction)
 {
+
     switch (direction)
     {
     case 'w':
@@ -78,13 +80,14 @@ void fillBackground(char backgroundChar)
     for (i = 0; i < ROWS; i++)
     {
         for (j = 0; j < COLUMNS; j++)
-        {
+        {   
             grid[j][i] = backgroundChar;
         };
     };
 };
 
 // Assign everything to the buffer
+
 void printToConsole()
 {
     int i, j;
