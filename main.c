@@ -19,6 +19,7 @@ int iterations;
 
 int main()
 {
+    system("cls");
     while (1)
     {
         fillBackground(backgroundChar);
